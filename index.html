@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Es Teh Segar</title>
+  <title>Kedai Es Teh Segar</title>
+  <link rel="icon" href="image/logo.png" type="image/png">
   <link href="./output.css" rel="stylesheet">
   <style>
     body {
@@ -37,44 +38,41 @@
 
   <!-- Hero -->
   <section class="relative min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-br from-teal-400 via-white to-white overflow-hidden px-6 py-16">
-    <!-- Ilustrasi atau produk -->
     <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
       <img src="image/bakar.jpg" alt="Es Teh Segar" class="rounded-3xl shadow-lg w-full max-w-sm mx-auto animate-fade-in-up" />
     </div>
-  
-    <!-- Teks Hero -->
+
     <div class="md:w-1/2 bg-white/50 backdrop-blur-lg p-8 rounded-2xl shadow-xl text-center md:text-left animate-fade-in-down">
       <h1 class="text-4xl md:text-6xl font-bold text-teal-700 mb-4 drop-shadow">Kedai Es Teh Segar</h1>
       <p class="text-gray-700 text-lg md:text-xl mb-6">Bakar rasa lapar, dinginkan dahaga.</p>
       <a href="#menu" class="inline-block bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full text-base md:text-lg transition">Lihat Menu</a>
     </div>
   </section>
-  
 
   <!-- Menu Section -->
   <section id="menu" class="py-16 px-4 bg-gray-50">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-10 text-teal-700">Daftar Menu</h2>
 
-      <!-- Menu Bakaran -->
       <div class="mb-12">
         <h3 class="text-2xl font-semibold mb-4 text-gray-800">Bakaran</h3>
         <ul id="menu-bakaran" class="grid gap-4 sm:grid-cols-2"></ul>
       </div>
 
-      <!-- Menu Minuman -->
       <div class="mb-12">
         <h3 class="text-2xl font-semibold mb-4 text-gray-800">Minuman</h3>
         <ul id="menu-minuman" class="grid gap-4 sm:grid-cols-2"></ul>
       </div>
 
-      <!-- Keranjang -->
       <div class="bg-white p-6 rounded-lg shadow mt-12">
         <h3 class="text-2xl font-semibold mb-4 text-teal-700">Keranjang</h3>
         <ul id="cart-list" class="mb-4 text-gray-800"></ul>
         <p class="text-lg font-semibold">Total: <span id="total">Rp 0</span></p>
 
-        <!-- Pilihan Pengambilan -->
+        <div class="mt-4 flex justify-end">
+          <button onclick="clearCart()" class="text-sm cursor-pointer text-red-600 hover:underline">Hapus Semua</button>
+        </div>
+
         <div class="mt-6">
           <label class="font-semibold">Pilih Pengambilan:</label>
           <select id="pickup" class="block w-full mt-2 border rounded p-2">
@@ -83,7 +81,6 @@
           </select>
         </div>
 
-        <!-- Metode Pembayaran -->
         <div class="mt-6">
           <label class="font-semibold">Metode Pembayaran:</label>
           <select id="payment" class="block w-full mt-2 border rounded p-2" onchange="toggleBukti()">
@@ -93,17 +90,17 @@
           </select>
         </div>
 
-        <!-- Upload Bukti Transfer & Gambar QRIS -->
         <div id="bukti-wrapper" class="mt-4 hidden">
-
-            <div id="qris-image" class="text-center">
-                <p class="mb-2 font-semibold">Scan QRIS di bawah ini:</p>
-                <img src="image/qris.jpg" alt="QRIS" class="mx-auto max-w-xs w-full h-auto rounded shadow" />
-                <p class="mt-3 text-sm text-gray-600 italic">
-                  Note: Kalau sudah transfer langsung kirim pesanan ya dan <p class="text-red-600 text-sm">Jangan lupa screenshot dan kirim ke nomor WhatsApp</p> Terimakasih🤗.
-                </p>
-                <p class="mt-3 text-sm text-gray-600 italic">Penting: Jika tidak mengirim bukti transfer maka di anggap tidak membayar.</p>
-              </div>
+          <div id="qris-image" class="text-center">
+            <p class="mb-2 font-semibold">Scan QRIS di bawah ini:</p>
+            <img src="image/qris.jpg" alt="QRIS" class="mx-auto max-w-xs w-full h-auto rounded shadow" />
+            <p class="mt-3 text-sm text-gray-600 italic">
+              Note: Kalau sudah transfer langsung kirim pesanan ya dan 
+              <p class="text-red-600 text-sm">Jangan lupa screenshot dan kirim ke nomor WhatsApp</p> 
+              Terimakasih🤗.
+            </p>
+            <p class="mt-3 text-sm text-gray-600 italic">Penting: Jika tidak mengirim bukti transfer maka dianggap tidak membayar.</p>
+          </div>
         </div>
 
         <button onclick="checkout()" class="mt-6 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full w-full">Pesan via WhatsApp</button>
@@ -111,18 +108,31 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 text-center py-6 text-sm text-gray-600">
-    &copy; 2025 Es Teh Segar. All rights reserved.
-  </footer>
+<div class="flex flex-col items-center justify-center text-center gap-4 px-6 py-8 max-w-2xl mx-auto mt-16 mb-24">
+  <p class="text-gray-800 text-lg md:text-xl font-medium">
+    Punya keluhan atau pertanyaan? Hubungi kami melalui WhatsApp di bawah ini.
+  </p>
+  <a
+    class="inline-block rounded-sm border border-teal-600 px-12 py-3 text-sm font-medium text-teal-600 hover:bg-teal-600 hover:text-white focus:ring-3 focus:outline-hidden"
+    href="https://wa.me/6282137930871" target="_blank"
+  >
+    Hubungi via WhatsApp
+  </a>
+</div>
 
-  <!-- Script -->
+
+
+<footer class="bg-gray-100 text-center py-6 text-sm text-gray-600">
+  &copy; 2025 Es Teh Segar. All rights reserved.
+</footer>
+
+
   <script>
     const cart = [];
 
     const menuBakaran = [
       { name: "Sate Pentol", price: 1000, available: true },
-      { name: "Sate Usus", price: 1000, available: false },
+      { name: "Sate Usus", price: 1000, available: true },
       { name: "Ceker", price: 1000, available: true },
       { name: "Tempe Bakar", price: 1000, available: true },
       { name: "Sayap", price: 2000, available: true },
@@ -136,10 +146,10 @@
     const menuMinuman = [
       { name: "Teh Original Sedang", price: 3000, available: true },
       { name: "Teh Original Jumbo", price: 5000, available: true },
-      { name: "Thai Tea Sedang", price: 8000, available: true },
-      { name: "Thai Tea Jumbo", price: 10000, available: true },
-      { name: "Green Tea Sedang", price: 8000, available: true },
-      { name: "Milk Green Tea", price: 10000, available: true },
+      { name: "Thai Tea Sedang", price: 8000, available: false },
+      { name: "Thai Tea Jumbo", price: 10000, available: false },
+      { name: "Green Tea Sedang", price: 8000, available: false },
+      { name: "Milk Green Tea", price: 10000, available: false },
       { name: "Pop Ice", price: 5000, available: true },
       { name: "Es Jeruk", price: 5000, available: true },
       { name: "Es Cekek", price: 1000, available: false },
@@ -175,6 +185,23 @@
       updateCart();
     }
 
+    function decreaseQty(name) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.qty--;
+        if (item.qty <= 0) {
+          const index = cart.indexOf(item);
+          cart.splice(index, 1);
+        }
+        updateCart();
+      }
+    }
+
+    function clearCart() {
+      cart.length = 0;
+      updateCart();
+    }
+
     function updateCart() {
       const list = document.getElementById('cart-list');
       const totalElem = document.getElementById('total');
@@ -183,10 +210,15 @@
       cart.forEach(item => {
         total += item.price * item.qty;
         const li = document.createElement("li");
-        li.className = "flex justify-between mb-2";
+        li.className = "flex justify-between items-center mb-2";
         li.innerHTML = `
-          <span>${item.name} x${item.qty}</span>
-          <span>Rp ${(item.price * item.qty).toLocaleString()}</span>
+          <div>
+            <span>${item.name} x${item.qty}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="decreaseQty('${item.name}')" class="text-xs text-red-600 hover:underline px-2">hapus</button>
+            <span>Rp ${(item.price * item.qty).toLocaleString()}</span>
+          </div>
         `;
         list.appendChild(li);
       });
@@ -202,28 +234,21 @@
     function checkout() {
       const pickup = document.getElementById('pickup').value;
       const payment = document.getElementById('payment').value;
-      const bukti = document.getElementById('bukti');
 
       if (cart.length === 0) {
         alert("Keranjang masih kosong.");
         return;
       }
 
-      if (payment === 'qris' && bukti.files.length === 0) {
-        alert("Silakan upload bukti transfer jika memilih pembayaran QRIS.");
-        return;
-      }
-
       const pesan = cart.map(item => `- ${item.name} x${item.qty}`).join('\n');
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-      const text = `Halo, saya ingin pesan:\n${pesan}\n\nTotal: Rp ${total.toLocaleString()}\n\nMetode Ambil: ${pickup === 'ambil' ? 'Ambil di Kedai' : 'Delivery'}\nMetode Bayar: ${payment === 'qris' ? 'QRIS (Transfer)' : 'Bayar di Tempat'}${payment === 'qris' ? '\nSudah transfer & upload bukti.' : ''}`;
+      const text = `Halo, saya ingin pesan:\n${pesan}\n\nTotal: Rp ${total.toLocaleString()}\n\nMetode Ambil: ${pickup === 'ambil' ? 'Ambil di Kedai' : 'Delivery'}\nMetode Bayar: ${payment === 'qris' ? 'QRIS (Transfer)' : 'Bayar di Tempat'}${payment === 'qris' ? '\nSilahkan transfer & kirim bukti disini.' : ''}`;
 
       const url = `https://wa.me/6285820417052?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
     }
 
-    // Init
     renderMenu(menuBakaran, "menu-bakaran");
     renderMenu(menuMinuman, "menu-minuman");
   </script>
